@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Linking, ScrollView, S
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import api from './src/services/api';
+
 
 function Feed() {
   return (
@@ -63,6 +65,13 @@ function Sobre() {
 }
 
 function Tecnologias() {
+  const [tecnologias, setTecnologias] = React.useState([]);
+
+  React.useEffect(() => {
+    api.get("/tecnologias").then((response) => {
+      setTecnologias(response.data);
+    });
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
       <Text style={styles.fontTextTitle}>Tecnologias</Text>
@@ -73,63 +82,63 @@ function Tecnologias() {
             source={require('./assets/react-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>React Native</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[0]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/javascript-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>JavaScript</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[1]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/nodejs-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>NodeJs</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[2]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/python.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>Python</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[3]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/java-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>Java</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[6]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/html5-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>HTML</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[4]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/css3-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>CSS</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[5]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/react-original.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>React</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[7]?.name}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Image
             source={require('./assets/github.png')}
             style={styles.imgIcons}
           />
-          <Text style={{ fontSize: 20, padding: 20 }}>Github</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{tecnologias[8]?.name}{" "}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -137,6 +146,13 @@ function Tecnologias() {
 }
 
 function Projetos() {
+  const [projetos, setProjetos] = React.useState([]);
+
+  React.useEffect(() => {
+    api.get("/projetos").then((response) => {
+      setProjetos(response.data);
+    });
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
       <Text style={styles.fontTextTitle}>Projetos</Text>
@@ -149,7 +165,7 @@ function Projetos() {
               style={styles.imgIcons}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, padding: 20 }}>Rede Monalisa</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{projetos[0]?.title}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => Linking.openURL('https://github.com/marcelle-mascarenhas/site-ela-resolve')}>
@@ -158,7 +174,7 @@ function Projetos() {
               style={styles.imgIcons}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, padding: 20 }}>Ela Resolve</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{projetos[14]?.title}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => Linking.openURL('https://github.com/marcelle-mascarenhas/residencia-squad-cesar')}>
@@ -167,7 +183,7 @@ function Projetos() {
               style={styles.imgIcons}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, padding: 20 }}>Form Tracking - CESAR</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{projetos[1]?.title}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => Linking.openURL('https://github.com/marcelle-mascarenhas/codigo-morse')}>
@@ -176,7 +192,7 @@ function Projetos() {
               style={styles.imgIcons}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, padding: 20 }}>Tradutor de Código Morse</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{projetos[2]?.title}{" "}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => Linking.openURL('https://github.com/marcelle-mascarenhas/portfolio')}>
@@ -185,7 +201,7 @@ function Projetos() {
               style={styles.imgIcons}
             />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, padding: 20 }}>Portfólio Pessoal</Text>
+          <Text style={{ fontSize: 20, padding: 20 }}>{projetos[3]?.title}{" "}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -306,6 +322,7 @@ const styles = StyleSheet.create({
 })
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <MyTabs />
